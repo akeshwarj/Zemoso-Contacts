@@ -122,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements
                 if(checkAccountsPermission()) {
                     String email = getString(R.string.signed_in_fmt, name);
                     Intent intent = new Intent(this, DisplayContactsActivity.class);
+
                     intent.putExtra(email, KEY);
                     startActivity(intent);
                     updateUI(false);
@@ -142,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements
                 Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
                 mGoogleApiClient.disconnect();
             }
-            Log.i("akeshwar", "this should be between second last and last");
+            Log.i("hello", "this should be between second last and last");
             mStatus.setText(R.string.signed_out);
 //            ((TextView) findViewById(R.id.email)).setText("");
         }
@@ -343,31 +344,17 @@ public class MainActivity extends AppCompatActivity implements
         mStatus.setText(R.string.signing_in);
     }
     // [END on_sign_in_clicked]
-
-    // [START on_sign_out_clicked]
-    public void onSignOutClicked() {
-        // Clear the default account so that GoogleApiClient will not automatically
-        // connect in the future.
-        if (mGoogleApiClient.isConnected()) {
-            Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
-            mGoogleApiClient.disconnect();
-        }
-
-        showSignedOutUI();
-    }
-    // [END on_sign_out_clicked]
-
-    // [START on_disconnect_clicked]
-    private void onDisconnectClicked() {
-        // Revoke all granted permissions and clear the default account.  The user will have
-        // to pass the consent screen to sign in again.
-        if (mGoogleApiClient.isConnected()) {
-            Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
-            Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient);
-            mGoogleApiClient.disconnect();
-        }
-
-        showSignedOutUI();
-    }
-    // [END on_disconnect_clicked]
+//
+//    // [START on_sign_out_clicked]
+//    public void onSignOutClicked() {
+//        // Clear the default account so that GoogleApiClient will not automatically
+//        // connect in the future.
+//        if (mGoogleApiClient.isConnected()) {
+//            Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
+//            mGoogleApiClient.disconnect();
+//        }
+//
+//        showSignedOutUI();
+//    }
+//    // [END on_sign_out_clicked]
 }
